@@ -1,0 +1,5 @@
+# Ignore Visual Studio user files
+project/bin/*
+project/obj/*
+project/*.suo
+project/*.use
