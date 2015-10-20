@@ -7,6 +7,7 @@ namespace efs
     {
         const string _pieFile = "pie.efs";
         const string _pieBuffer = "AMAMAMAMAM";
+        const int _maxBuffer = int.MaxValue;
 
         public void Do()
         {
@@ -18,7 +19,7 @@ namespace efs
 
         private void EatFreeSpace()
         {
-            Messaging.Instance.Write("Eat Free Space has been started");
+            Drive.Instance.PrintDriveInfo();
 
             Messaging.Instance.Write("Eating...");
 
@@ -51,7 +52,7 @@ namespace efs
             try
             {
                 File.Delete(_pieFile);
-                Messaging.Instance.Write("The space has been released.");
+                Messaging.Instance.Write("Free space has been released.");
             }
             catch (Exception ex)
             {

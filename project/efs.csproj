@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Drive.cs" />
     <Compile Include="EMessageType.cs" />
     <Compile Include="FreeSpace.cs" />
     <Compile Include="Messaging.cs" />
