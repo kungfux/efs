@@ -34,7 +34,7 @@ namespace efs
             if (drive == null)
                 return;
 
-            Messaging.Instance.Write(
+            Message.Instance.Write(
                 string.Format("Target drive: {0}{1}{2}Available Free Space: {3} bytes",
                 drive.Name,
                 drive.VolumeLabel,
