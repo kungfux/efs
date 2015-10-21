@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("efs")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("Eat Free Space")]
+[assembly: AssemblyDescription("Utility to fill up all available free space on the drive")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("efs")]
-[assembly: AssemblyCopyright("Copyright ©  2015")]
+[assembly: AssemblyProduct("EFS")]
+[assembly: AssemblyCopyright("Copyright © Alexander Fuks 2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
