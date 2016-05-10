@@ -26,41 +26,30 @@ namespace ffs_util
             TB = 16
         }
 
-        private DriveInfo drive = null;
+        private DriveInfo _drive = null;
 
-        public Drive()
+        public bool SetTargetDrive(string drive)
         {
-            string appPath = System.Reflection.Assembly.GetExecutingAssembly().Location;
-            string rootPath = null;
-
-            if (!string.IsNullOrEmpty(appPath))
-                rootPath = Path.GetPathRoot(appPath);
-
-            if (!string.IsNullOrEmpty(rootPath))
-                drive = new DriveInfo(rootPath);
+            try
+            {
+                _drive = new DriveInfo(drive);
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
 
-        public void PrintDriveInfo()
+        public long GetAvailableFreeSpaceAsLong()
         {
-            if (drive == null)
-                return;
-
-            Message.Instance.Write(
-                string.Format("Target drive: {0}{1}{2}Available Free Space: {3}",
-                drive.Name,
-                drive.VolumeLabel,
-                Environment.NewLine,
-                GetConvertedBytes(drive.AvailableFreeSpace)));
+            return _drive != null ? _drive.AvailableFreeSpace : 0;
         }
 
-        public long GetAvailableFreeSpace()
+        public string GetAvailableFreeSpaceAsString()
         {
-            return drive != null ? drive.AvailableFreeSpace : 0;
-        }
-
-        private string GetPathRoot()
-        {
-            return Path.GetPathRoot(System.Reflection.Assembly.GetExecutingAssembly().Location);
+            long[] result = ConvertBytes(GetAvailableFreeSpaceAsLong(), 1, 16);
+            return string.Format("{0} {1}", result[0].ToString(), (SpaceSize)result[1]);
         }
 
         private long[] ConvertBytes(long bytes, int minEnum, int maxEnum)
@@ -74,12 +63,6 @@ namespace ffs_util
                 sizeName = sizeName * 2;
             }
             return new long[] { (long)Math.Round(size, 0), sizeName };
-        }
-
-        private string GetConvertedBytes(long bytes)
-        {
-            long[] result = ConvertBytes(bytes, 1, 16);
-            return string.Format("{0} {1}", result[0].ToString(), (SpaceSize)result[1]);
         }
     }
 }

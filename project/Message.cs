@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Text;
 
 namespace ffs_util
 {
@@ -16,27 +18,9 @@ namespace ffs_util
             }
         }
 
-        /// <summary>
-        /// Write message to console
-        /// </summary>
-        /// <param name="message">Text of message</param>
-        /// <param name="messageType">Message type</param>
-        public void Write(string message, EMessageType messageType = EMessageType.Info)
+        public void PrintError(string message)
         {
-            ConsoleColor currentColor = Console.ForegroundColor;
-
-            switch (messageType)
-            {
-                case EMessageType.Warning:
-                    Console.ForegroundColor = ConsoleColor.Yellow;
-                    break;
-                case EMessageType.Error:
-                    Console.ForegroundColor = ConsoleColor.DarkRed;
-                    break;
-            }
-
-            Console.WriteLine(message);
-            Console.ForegroundColor = currentColor;
+            Console.WriteLine("ffs-util: " + message);
         }
     }
 }
