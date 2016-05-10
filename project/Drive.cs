@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace efs
+namespace ffs_util
 {
     internal class Drive
     {

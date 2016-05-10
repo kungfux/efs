@@ -7,8 +7,8 @@
     <ProjectGuid>{73016A34-EE8F-43A9-BE08-CF60761F0BB8}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>efs</RootNamespace>
-    <AssemblyName>efs</AssemblyName>
+    <RootNamespace>ffs_util</RootNamespace>
+    <AssemblyName>ffs-util</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

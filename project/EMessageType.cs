@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace efs
+namespace ffs_util
 {
     /// <summary>
     /// Message type
