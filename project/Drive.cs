@@ -5,13 +5,15 @@ namespace ffs_util
 {
     internal class Drive
     {
-        private static readonly Lazy<Drive> _instance = new Lazy<Drive>(() => new Drive());
+        private static Drive _instance = new Drive();
 
         public static Drive Instance
         {
             get
             {
-                return _instance.Value;
+                if (_instance == null)
+                    _instance = new Drive();
+                return _instance;
             }
         }
 

@@ -4,13 +4,15 @@ namespace ffs_util
 {
     internal class Message
     {
-        private static readonly Lazy<Message> _instance = new Lazy<Message>(() => new Message());
+        private static Message _instance = new Message();
 
         public static Message Instance
         {
             get
             {
-                return _instance.Value;
+                if (_instance == null)
+                    _instance = new Message();
+                return _instance;
             }
         }
 
