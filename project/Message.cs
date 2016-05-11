@@ -1,40 +1,63 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Reflection;
+using System.Text;
 
-namespace efs
+namespace ffs_util
 {
     internal class Message
     {
-        private static readonly Lazy<Message> _instance = new Lazy<Message>(() => new Message());
+        private static Message _instance = new Message();
+
 
         public static Message Instance
         {
             get
             {
-                return _instance.Value;
+                if (_instance == null)
+                    _instance = new Message();
+                return _instance;
             }
         }
 
-        /// <summary>
-        /// Write message to console
-        /// </summary>
-        /// <param name="message">Text of message</param>
-        /// <param name="messageType">Message type</param>
-        public void Write(string message, EMessageType messageType = EMessageType.Info)
+
+        public void PrintError(string Message)
         {
-            ConsoleColor currentColor = Console.ForegroundColor;
+            Console.WriteLine("ffs-util: " + Message);
+        }
 
-            switch (messageType)
-            {
-                case EMessageType.Warning:
-                    Console.ForegroundColor = ConsoleColor.Yellow;
-                    break;
-                case EMessageType.Error:
-                    Console.ForegroundColor = ConsoleColor.DarkRed;
-                    break;
-            }
 
-            Console.WriteLine(message);
-            Console.ForegroundColor = currentColor;
+        public void PrintMessage(string Message)
+        {
+            Console.WriteLine(Message);
+        }
+
+
+        public void PrintGreetings()
+        {
+            StringBuilder help = new StringBuilder();
+
+            help.Append("Fill Free Space utility [Version ");
+            help.Append(Assembly.GetExecutingAssembly().GetName().Version.ToString());
+            help.AppendLine("]");
+            help.AppendLine("Copyright (c) 2016 Alexander Fuks");
+
+            Console.WriteLine(help.ToString());
+        }
+
+
+        public void PrintHelp()
+        {
+            // TODO: Add [-m[=(mode 0|1)]]
+
+            StringBuilder help = new StringBuilder();
+            
+            help.AppendLine("usage: ffs-util [--help] [/?] [-d[=(drive)]]");
+            help.AppendLine();
+            help.AppendLine("The keywords used in commands are:");
+            help.AppendLine("   drive   System drive name e.g. C");
+
+            Console.WriteLine(help.ToString());
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "efs", "efs.csproj", "{73016A34-EE8F-43A9-BE08-CF60761F0BB8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ffs-util", "ffs-util.csproj", "{73016A34-EE8F-43A9-BE08-CF60761F0BB8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
