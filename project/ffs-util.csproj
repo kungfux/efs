@@ -44,7 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Drive.cs" />
+    <Compile Include="DriveSpaceInfo.cs" />
     <Compile Include="FillFreeSpace.cs" />
     <Compile Include="Message.cs" />
     <Compile Include="Program.cs" />

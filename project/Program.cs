@@ -8,12 +8,13 @@ namespace ffs_util
     {
         static void Main(string[] args)
         {
-            PrintAbout();
+            Message.Instance.PrintGreetings();
 
-            // TODO: Return feature that file will be created on the active drive without arguments
             if (args == null || args.Length <= 0)
             {
-                PrintHelp();
+                string activeDrive = Assembly.GetExecutingAssembly().Location.Substring(0, 1);
+                Message.Instance.PrintMessage("Note: No arguments were specified. Using drive " + activeDrive);
+                new FillFreeSpace().FillFreeSpaceWithEmptyFileOrDelete(activeDrive);
                 return;
             }
 
@@ -21,43 +22,26 @@ namespace ffs_util
             {
                 if (args[a] == "--help" || args[a] == "/?")
                 {
-                    PrintHelp();
-                    return;
+                    Message.Instance.PrintHelp();
+                    break;
                 }
 
                 if (args[a].StartsWith("-d=") && args[a].Length == 4)
                 {
-                    string drive = args[a].Substring(3, 1);
-                    new FillFreeSpace().FillFreeSpaceWithEmptyFile(drive);
-                    return;
+                    char driveName = args[a].Substring(3, 1).ToUpper().ToCharArray()[0];
+                    if (driveName >= 'A' && driveName <= 'Z')
+                    {
+                        string drive = args[a].Substring(3, 1);
+                        new FillFreeSpace().FillFreeSpaceWithEmptyFileOrDelete(drive);
+                        break;
+                    }
+
+                    Message.Instance.PrintError(driveName + " is not a correct drive name. See 'ffs-util --help'.");
+                    break;
                 }
 
                 Message.Instance.PrintError(args[a] + " is not a correct command. See 'ffs-util --help'.");
-                return;
             }
-        }
-
-        static void PrintAbout()
-        {
-            Console.WriteLine(
-                string.Format(
-                    "Fill Free Space utility [Version {1}]{0}" +
-                    "Copyright (c) 2016 Alexander Fuks{0}", 
-                Environment.NewLine,
-                Assembly.GetExecutingAssembly().GetName().Version.ToString())
-                );
-        }
-
-        static void PrintHelp()
-        {
-            // TODO: Add [-m[=(mode 0|1)]]
-            Console.WriteLine(
-                string.Format(
-                        "usage: ffs-util [--help] [/?] [-d[=(drive)]] {0}{0}" +
-                        "The keywords used in commands are: {0}" +
-                        "   drive   System drive name like C or D {0}",
-                    Environment.NewLine)
-                );
         }
     }
 }
